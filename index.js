@@ -3,6 +3,8 @@ const http = require('http');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 
+const dishRouter = require('./routes/dishRouter');
+
 
 const hostname = 'localhost';
 const port = 3000;
@@ -34,6 +36,8 @@ app.put('/dishes/:dishId',(req,res,next) =>{
 app.delete('/dishes/:dishId', (req,res,next) =>{
   res.end(`Deleting dish: ${req.params.dishId}`);
 });
+
+app.use('/dishes',dishRouter);
 
 app.use(express.static(__dirname + '/public'));
 
